@@ -30,6 +30,17 @@ spec:
         securityContext:
           privileged: false
           allowPrivilegeEscalation: false
+        env:
+          - name: LD_SUPERUSER_NAME
+            valueFrom:
+              secretKeyRef:
+                name: linkding
+                key: LD_SUPERUSER_NAME
+          - name: LD_SUPERUSER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: linkding
+                key: LD_SUPERUSER_PASSWORD
       volumes:
         - name: linkding-data
           persistentVolumeClaim:
