@@ -4,7 +4,7 @@ data:
     LD_SUPERUSER_PASSWORD: ENC[AES256_GCM,data:kcwqHL7qiW4=,iv:BhFgFR3Eiej6xYdP1hM+OOMbXORVzcLsKEv09gvxn88=,tag:Afng9fagDMISr48gKK8bZA==,type:str]
 kind: Secret
 metadata:
-    name: linkding
+    name: linkding-container-env
 sops:
     age:
         - recipient: age1huyccwqw8ffkpeqqxpe2mr0dmjhtmg3gupedz9g9es6v7j5pcs2sfvtvda
