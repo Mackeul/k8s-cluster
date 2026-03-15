@@ -32,3 +32,18 @@ spec:
   values:
     grafana:
       adminPassword: mischa
+#     admin:
+#       existingSecret: ""
+#       userKey: admin-user
+#       passwordKey: admin-password
+#
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        hosts: 
+          - grafana.malazan.wu
+        path: /
+#       tls:
+#         - secretName: grafana-general-tls
+#           hosts:
+#             - grafana.example.com

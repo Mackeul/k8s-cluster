@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: linkding.test.com
+    - host: linkding.malazan.wu
       http:
         paths:
           - backend:
