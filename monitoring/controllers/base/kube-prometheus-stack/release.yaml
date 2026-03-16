@@ -43,7 +43,7 @@ spec:
         hosts: 
           - grafana.malazan.wu
         path: /
-      tls:
-         - secretName: grafana-general-tls
-           hosts:
-             - grafana.malazan.wu
+        tls:
+           - secretName: grafana-general-tls
+             hosts:
+               - grafana.malazan.wu
