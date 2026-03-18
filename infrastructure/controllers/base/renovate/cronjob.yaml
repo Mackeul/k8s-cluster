@@ -18,8 +18,8 @@ spec:
               - Mackeul/k8s-cluster
             envFrom:
               - secretRef:
-                name: renovate-container-env
+                  name: renovate-container-env
               - configMapRef:
-                name: renovate-configmap
+                  name: renovate-configmap
 
           restartPolicy: Never
