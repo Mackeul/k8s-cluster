@@ -5,5 +5,5 @@ metadata:
   name: env-configmap
   namespace: audiobookshelf
 data:
-  TZ: America/Toronto
-  PORT: 3005
+  TZ: "America/Toronto"
+  PORT: "3005"
