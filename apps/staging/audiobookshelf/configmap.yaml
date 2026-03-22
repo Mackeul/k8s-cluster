@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: env-configmap
+  namespace: audiobookshelf
+data:
+  TZ: America/Toronto
