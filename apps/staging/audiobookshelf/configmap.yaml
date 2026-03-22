@@ -6,3 +6,4 @@ metadata:
   namespace: audiobookshelf
 data:
   TZ: America/Toronto
+  PORT: 3005
