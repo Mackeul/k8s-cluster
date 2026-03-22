@@ -11,7 +11,6 @@ spec:
   - name: "3005"
     port: 3005
     protocol: TCP
-    targetPort: 3005
   selector:
     app: audiobookshelf
   type: ClusterIP
