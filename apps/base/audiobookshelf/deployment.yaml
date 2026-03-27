@@ -26,15 +26,18 @@ spec:
       containers:
       - image: ghcr.io/advplyr/audiobookshelf
         name: audiobookshelf
+        envFrom:
+        - configMapRef:
+            name: env-configmap
         volumeMounts:
-          - mountPath: "/config"
-            name: "audiobookshelf-storage"
-          - mountPath: "/metadata"
-            name: "audiobookshelf-storage"
-          - mountPath: "/audiobooks"
-            name: "audiobookshelf-storage"
-          - mountPath: "/podcasts"
-            name: "audiobookshelf-storage"
+        - mountPath: "/config"
+          name: "audiobookshelf-storage"
+        - mountPath: "/metadata"
+          name: "audiobookshelf-storage"
+        - mountPath: "/audiobooks"
+          name: "audiobookshelf-storage"
+        - mountPath: "/podcasts"
+          name: "audiobookshelf-storage"
         securityContext:
           privileged: false
           allowPrivilegeEscalation: false
