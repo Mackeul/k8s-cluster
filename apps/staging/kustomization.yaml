@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# Note: commenting or removing a resource below will remove that application from the cluster,
+# INCLUDING persistentvolume storage defined in them.  This can be useful if an app deployment needs to be
+# deleted or re-inialized...
+# BUT BE CAREFUL!!!
+resources:
+- linkding
+- audiobookshelf
