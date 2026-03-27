@@ -5,6 +5,7 @@ kind: Secret
 metadata:
     creationTimestamp: null
     name: tunnel-credentials
+    namespace: audiobookshelf
 sops:
     age:
         - recipient: age1huyccwqw8ffkpeqqxpe2mr0dmjhtmg3gupedz9g9es6v7j5pcs2sfvtvda
