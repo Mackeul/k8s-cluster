@@ -18,6 +18,11 @@ spec:
       labels:
         app: audiobookshelf
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - image: ghcr.io/advplyr/audiobookshelf
         name: audiobookshelf
@@ -30,6 +35,9 @@ spec:
             name: "audiobookshelf-storage"
           - mountPath: "/podcasts"
             name: "audiobookshelf-storage"
+        securityContext:
+          privileged: false
+          allowPrivilegeEscalation: false
       volumes:
       - name: "audiobookshelf-storage"
         persistentVolumeClaim:
