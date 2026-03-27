@@ -4,4 +4,4 @@ resources:
 - ../../base/audiobookshelf/
 - configmap.yaml
 - cloudflare.yaml
-- cloudlflare-tunnel.yaml
+- cloudflare-tunnel.yaml
