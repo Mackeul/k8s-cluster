@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: env-configmap
-  namespace: audiobookshelf
 data:
   TZ: "America/Toronto"
   PORT: "3005"
