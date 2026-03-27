@@ -21,5 +21,18 @@ spec:
       containers:
       - image: ghcr.io/advplyr/audiobookshelf
         name: audiobookshelf
-        resources: {}
+        volumeMounts:
+          - mountPath: "/config"
+            name: "audiobookshelf-storage"
+          - mountPath: "/metadata"
+            name: "audiobookshelf-storage"
+          - mountPath: "/audiobooks"
+            name: "audiobookshelf-storage"
+          - mountPath: "/podcasts"
+            name: "audiobookshelf-storage"
+      volumes:
+        - name: "audiobookshelf-storage"
+          persistentVolumeClaim:
+            claimName: "audiobookshelf-storage-pvc"
+
 status: {}
