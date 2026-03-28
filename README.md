@@ -1,6 +1,6 @@
 Yaml files for homelab Kubernetes cluster.   Using infrastructure as code and GitOps.
 
-Workflow is a little different than typical Git workflows, where instead of having different branches for different environments (ie. main branch--> production, staging branch --> testing, develop --> development, etc...), all environments are available from the main branch, but from different subdirectories (ie. apps/staging dir applies to testing environments, production dir to production environments).  This allows for shared base files while having separate staging and production files without having to manage multiple branches.  This could change over time, depending on how the flow performs.
+Workflow is a little different than typical Git workflows, where instead of having different branches for different environments (ie. main branch--> production, staging branch --> testing, develop --> development, etc...), all environments are available from the main branch, but from different subdirectories (ie. apps/staging dir applies to testing environments, production dir to production environments).  This is called the Monorepo approach and allows for shared base files while having separate staging and production files without having to manage multiple branches.  This could change over time, depending on how the flow performs.  See https://fluxcd.io/flux/guides/repository-structure/
 
 This project is broken down into 3 areas: Applications, Infrastructure and Monitoring.
 
