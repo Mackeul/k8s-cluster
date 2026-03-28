@@ -8,7 +8,7 @@ This project is broken down into 3 areas: Applications, Infrastructure and Monit
 The following applications have so far been deployed:
 
 ## Linkding
-A bookmark manager.  http://linkding.link
+A bookmark manager.  https://linkding.link
 
 ## Audiobookshelf
 An audiobook and podcast media file manager.  https://www.audiobookshelf.org/
