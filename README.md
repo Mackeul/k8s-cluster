@@ -22,4 +22,4 @@ An application that monitors for new releases of applications and creates Pull R
 # Monitoring
 
 ## Prometheus + Grafana
-Installed as a stack and used for nice Graphical monitoring of the cluster.
+Installed as a stack for metrics, dashboards and alerts.  Prometheus takes care of scraping and storing metrics, while Grafana visualizes them via Dashboards.  Alermanager can route notifications to external systems like email or Slack.
