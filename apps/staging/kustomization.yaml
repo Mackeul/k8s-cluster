@@ -6,4 +6,4 @@ kind: Kustomization
 # BUT BE CAREFUL!!!
 resources:
 - linkding
-#- audiobookshelf
+- audiobookshelf

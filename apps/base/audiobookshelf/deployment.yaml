@@ -31,12 +31,16 @@ spec:
         volumeMounts:
         - mountPath: "/config"
           name: "audiobookshelf-storage"
+          subPath: "config"
         - mountPath: "/metadata"
           name: "audiobookshelf-storage"
+          subPath: "metadata"
         - mountPath: "/audiobooks"
           name: "audiobookshelf-storage"
+          subPath: "audiobooks"
         - mountPath: "/podcasts"
           name: "audiobookshelf-storage"
+          subPath: "podcasts"
         securityContext:
           privileged: false
           allowPrivilegeEscalation: false
