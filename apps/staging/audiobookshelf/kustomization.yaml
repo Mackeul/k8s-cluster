@@ -6,3 +6,4 @@ resources:
 - configmap.yaml
 - cloudflare.yaml
 - cloudflare-tunnel.yaml
+- ingress.yaml
