@@ -24,4 +24,4 @@ An application that monitors for new releases of applications and creates Pull R
 # Monitoring
 
 ## Prometheus + Grafana
-Installed as a stack for metrics, dashboards and alerts.  Prometheus takes care of scraping and storing metrics, while Grafana visualizes them via Dashboards.  Alermanager can route notifications to external systems like email or Slack.  https://github.com/prometheus-community/helm-charts/releases/tag/kube-prometheus-stack-82.15.1
+Installed as a stack for metrics, dashboards and alerts.  Prometheus takes care of scraping and storing metrics, while Grafana visualizes them via Dashboards.  Alertmanager can route notifications to external systems like email or Slack.  https://github.com/prometheus-community/helm-charts/releases/tag/kube-prometheus-stack-82.15.1
