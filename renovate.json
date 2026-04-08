@@ -6,7 +6,7 @@
     ]
   },
   "helm-values": {
-    "enabled": true
+    "enabled": true,
     "fileMatch": [
       "\\.yaml$"
     ]
