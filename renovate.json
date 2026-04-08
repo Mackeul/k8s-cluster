@@ -4,5 +4,11 @@
     "fileMatch": [
       "\\.yaml$"
     ]
+  },
+  "helm-values": {
+    "enabled": true
+    "fileMatch": [
+      "\\.yaml$"
+    ]
   }
 }
