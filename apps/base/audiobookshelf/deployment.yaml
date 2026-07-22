@@ -36,11 +36,15 @@ spec:
           name: "audiobookshelf-storage"
           subPath: "metadata"
         - mountPath: "/audiobooks"
-          name: "audiobookshelf-storage"
-          subPath: "audiobooks"
+          #name: "audiobookshelf-storage"
+          #subPath: "audiobooks"
+          name: "nfs-shared"
+          subPath: "AudioBooks"
         - mountPath: "/podcasts"
-          name: "audiobookshelf-storage"
-          subPath: "podcasts"
+          #name: "audiobookshelf-storage"
+          #subPath: "podcasts"
+          name: "nfs-shared"
+          subPath: "Podcasts"
         securityContext:
           privileged: false
           allowPrivilegeEscalation: false
@@ -48,5 +52,10 @@ spec:
       - name: "audiobookshelf-storage"
         persistentVolumeClaim:
           claimName: "audiobookshelf-storage-pvc"
+      - name: "nfs-shared"
+        nfs:
+          server: cotillion.malazan.wu
+          path: /mnt/tank/Media
+          readOnly: true
 
 status: {}
