@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - grafana-general-tls.yaml
+  - alertmanager-smtp.yaml
