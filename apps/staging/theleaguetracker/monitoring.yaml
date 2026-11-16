@@ -31,6 +31,7 @@ spec:
           expr: kube_deployment_status_replicas_available{namespace="theleaguetracker", deployment="theleaguetracker"} < 1
           for: 5m
           labels:
+            namespace: theleaguetracker
             severity: critical
           annotations:
             summary: The League Tracker has no ready pod
@@ -40,6 +41,7 @@ spec:
           expr: (sum(cloudflared_tunnel_ha_connections{namespace="theleaguetracker"}) or vector(0)) < 1
           for: 5m
           labels:
+            namespace: theleaguetracker
             severity: critical
           annotations:
             summary: Cloudflare tunnel for theleaguetracker.com has no connections
@@ -52,6 +54,7 @@ spec:
             and sum(rate(cloudflared_tunnel_total_requests{namespace="theleaguetracker"}[10m])) > 0.01
           for: 10m
           labels:
+            namespace: theleaguetracker
             severity: warning
           annotations:
             summary: More than 5% of requests to theleaguetracker.com return 5xx
@@ -61,6 +64,7 @@ spec:
           expr: time() - kube_cronjob_status_last_successful_time{namespace="theleaguetracker", cronjob="theleaguetracker-backup"} > 26 * 3600
           for: 15m
           labels:
+            namespace: theleaguetracker
             severity: warning
           annotations:
             summary: No successful League Tracker backup in over 26 hours
@@ -72,6 +76,7 @@ spec:
               / max(kube_pod_container_resource_limits{namespace="theleaguetracker", container="app", resource="memory"}) > 0.9
           for: 15m
           labels:
+            namespace: theleaguetracker
             severity: warning
           annotations:
             summary: The League Tracker is using over 90% of its memory limit

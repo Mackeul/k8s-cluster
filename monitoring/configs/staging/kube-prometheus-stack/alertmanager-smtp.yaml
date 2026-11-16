@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: alertmanager-smtp
+    namespace: monitoring
+type: Opaque
+data:
+    password: ENC[AES256_GCM,data:0jiXKUULFFU1ZjqdtEVzCppQfwTaC1F9,iv:nxlppPThgCVWTlttZ52o1m5MoQm6E6nAKslRN95gOOQ=,tag:RKp3ym44UWI4z+B0STHiqQ==,type:str]
+sops:
+    age:
+        - recipient: age1huyccwqw8ffkpeqqxpe2mr0dmjhtmg3gupedz9g9es6v7j5pcs2sfvtvda
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5cGVFeFl4OFZEbHJ4SXBr
+            UWl0c2h3N3NaaElHWitkcTd5Q3p1STcyMFZBCmpidUt4SVVLY0lJWlJteC9Rait5
+            eGxEK204MmNjQWFQUUNLUHQ1aTFaSXcKLS0tIFgvMGRMSm1zQ0lBa0Y1bGwyeis5
+            ZVVEaEZTUU9NV2ZoL3FmWkpocEpya2sKeoQ0fzjlKimE6tPh7AlSuAHqQMvFAV0s
+            B4kLIgjaxNJmGkbRlXpkqj9wBpiqEUOgveHnsZlsBb3RMw5e9y9mzQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-11-16T04:47:17Z"
+    mac: ENC[AES256_GCM,data:Wmk3AEoNv8I2FRh1QFVhuyMJuhPnbNmdqhHu2BJUDGoJ8ilLKLJ1Bdxsbpn5Tck3iICx9xZ5+vTqk38S/Vxys2JO2XaGRGShFOjGFdg3oPL2DKgHVwWWkGu1Od+GljeVR52ozc/f6XIqSK7dIfDr5AGEaP6WK55YJoyuqb472LY=,iv:DqWCSKrGibBAkPeeFHhcaF9ceQRAd2RjIQgWaqMjZ7o=,tag:cmKgkIP/bD0oy43iSRqFlw==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.12.1

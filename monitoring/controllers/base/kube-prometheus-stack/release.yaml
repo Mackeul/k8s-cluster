@@ -30,6 +30,53 @@ spec:
         target:
           kind: PrometheusRule
   values:
+    alertmanager:
+      alertmanagerSpec:
+        # Mounted at /etc/alertmanager/secrets/alertmanager-smtp/ (sops-encrypted
+        # in monitoring/configs/staging/kube-prometheus-stack/alertmanager-smtp.yaml).
+        secrets:
+          - alertmanager-smtp
+      config:
+        global:
+          resolve_timeout: 5m
+          smtp_smarthost: smtp.protonmail.ch:587
+          smtp_from: The League Tracker alerts <admin@theleaguetracker.com>
+          smtp_auth_username: admin@theleaguetracker.com
+          smtp_auth_password_file: /etc/alertmanager/secrets/alertmanager-smtp/password
+          smtp_require_tls: true
+        # Same inhibit rules as the chart's default config.
+        inhibit_rules:
+          - equal: [namespace, alertname]
+            source_matchers: ["severity = critical"]
+            target_matchers: ["severity =~ warning|info"]
+          - equal: [namespace, alertname]
+            source_matchers: ["severity = warning"]
+            target_matchers: ["severity = info"]
+          - equal: [namespace]
+            source_matchers: ["alertname = InfoInhibitor"]
+            target_matchers: ["severity = info"]
+          - target_matchers: ["alertname = InfoInhibitor"]
+        route:
+          group_by: [namespace]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 12h
+          receiver: "null"
+          routes:
+            - matchers: ['alertname = "Watchdog"']
+              receiver: "null"
+            # Only The League Tracker's alerts are emailed; everything else stays
+            # in the Alertmanager/Grafana UI.
+            - matchers: ['namespace = "theleaguetracker"']
+              receiver: theleaguetracker-email
+        receivers:
+          - name: "null"
+          - name: theleaguetracker-email
+            email_configs:
+              - to: admin@theleaguetracker.com
+                send_resolved: true
+        templates:
+          - /etc/alertmanager/config/*.tmpl
     grafana:
       adminPassword: mischa
 #     admin:
