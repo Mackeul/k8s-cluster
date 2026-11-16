@@ -27,14 +27,15 @@ data:
   QUEUE_CONNECTION: "sync"
   LOGO_DISK: "public"
 
-  # Transactional email (sign-up confirmation, password reset, invitations).
-  # TODO: switch MAIL_MAILER to "smtp" and set the host once an SMTP account
-  # exists; with "log" the emails only go to the pod logs.
-  MAIL_MAILER: "log"
-  MAIL_HOST: "smtp.example.com"
+  # Transactional email (sign-up confirmation, password reset, invitations),
+  # sent through Proton Mail. MAIL_USERNAME (the sending address) and
+  # MAIL_PASSWORD (a Proton SMTP token) are in theleaguetracker-secrets.
+  # MAIL_FROM_ADDRESS must be the same address as MAIL_USERNAME.
+  MAIL_MAILER: "smtp"
+  MAIL_HOST: "smtp.protonmail.ch"
   MAIL_PORT: "587"
-  MAIL_SCHEME: "tls"
-  MAIL_FROM_ADDRESS: "hello@theleaguetracker.com"
+  MAIL_SCHEME: "smtp"   # STARTTLS on 587
+  MAIL_FROM_ADDRESS: "admin@theleaguetracker.com"
   MAIL_FROM_NAME: "The League Tracker"
 
   # Start-up behaviour of the container (docker/entrypoint.sh).
