@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: theleaguetracker
+  labels:
+    app: theleaguetracker
+spec:
+  # One replica: SQLite and the logo files live on a ReadWriteOnce volume.
+  # Recreate (not RollingUpdate) so the old pod releases the volume first.
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: theleaguetracker
+  template:
+    metadata:
+      labels:
+        app: theleaguetracker
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/mackeul/theleaguetracker:v0.1.0-beta.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: theleaguetracker-config
+            - secretRef:
+                name: theleaguetracker-secrets
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html/storage/app
+          # Start-up runs migrations and seeds, so give it a moment.
+          startupProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 5
+            failureThreshold: 24
+          readinessProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              memory: 512Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: theleaguetracker-data

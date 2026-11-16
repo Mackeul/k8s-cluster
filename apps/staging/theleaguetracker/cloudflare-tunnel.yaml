@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+    credentials.json: ENC[AES256_GCM,data:O6/MYqVsxF73Lqt8+SY+jnW5TocM98R6hO2Upszokc7gtv5aUA5123+GhvnDNyIPkjlzb+7z4mHtvoGvPxB3/i5790hGFTfpa3sZ3uIv9aUpCO4bL/s+SRaqIXZfkwZvtCxDNgDt8SmqPoxjEU5cOyLi69tbiqBswj9cr/bvWMwcnYrBIMuLWBRwwn03HWincpjQR5kPM/12r+nwop2Q0Gmfw/PJisJ3v43Vf+i7jvOrETtkQIIKgjpyLsFJ5EnzYHkrlD43/ewfwd+V4I+d85BhtnP/AElZ6JJCM3yrUx6nzlg+G9ZyweXMMHY=,iv:mHKMynGeIy2SOaV/WOSTF9I4XDUp6cGBmQ6zhQe0Gr8=,tag:1wwrT0d94WlhjLa9mP2N9w==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: tunnel-credentials
+    namespace: theleaguetracker
+sops:
+    age:
+        - recipient: age1huyccwqw8ffkpeqqxpe2mr0dmjhtmg3gupedz9g9es6v7j5pcs2sfvtvda
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA1eWNubytLZWV5UkY4TjBN
+            UlphMEk5Z2JBNERvdlV4Z2MrSkw1SWxObFM0CkNVWjYxMjkvaHlZT1hrNFpQRGh0
+            d2VhelBzbFZQRGxqanA4UnF5RUtXT3cKLS0tIG9DWmphUHBtQ3cvbXEwQ0J1bk5y
+            YkZsWXZ1TzMzb0pidGtiY2hXUS9FTmsKdXYp1LlZIiu3tJyypIUkwcm6Y1bb6Q9/
+            55e/jx6zpNnFr44vd1wM4G7Xk0LC/8i9RKWRzRIaYj7boYCHzTZG7w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-11-16T03:09:00Z"
+    mac: ENC[AES256_GCM,data:jsMCTlFMb+2YSQEa2MCnYEDO7aVd3HyfJIVeJkxiYzZFx+Uw4pPeOJPWYy7XDnj0Y3SEH2MbA2hscISKuQ8qpW2KakatH8RWGcKD58u8GAKv9o+hvCq/NxMtSyvyFj1Dkr6kCZWyPdIstO/7CEO6znqBU1+RUfr2PQQ0mi5loME=,iv:dP9ARbi1qblfVeykIlzKybVR1sQFooNquavjHCou3OA=,tag:kSfC952d3wGx1UD88L6B0w==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.12.1

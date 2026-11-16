@@ -13,6 +13,9 @@ A bookmark manager.  https://linkding.link
 ## Audiobookshelf
 An audiobook and podcast media file manager.  https://www.audiobookshelf.org/
 
+## The League Tracker
+Web based sports league statistics tracking.  https://theleaguetracker.com
+
 # Infrastructure
 
 ## FluxCD
