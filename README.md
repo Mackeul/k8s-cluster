@@ -74,4 +74,4 @@ Alertmanager sends email through Proton SMTP (`smtp.protonmail.ch:587`) from `ad
 
 Only alerts with `namespace="theleaguetracker"` are emailed, to `admin@theleaguetracker.com`, with resolved notices and a reminder every 12 hours while an alert is still firing.  Every other alert, including `Watchdog`, goes to the `null` receiver and only shows in Grafana and Alertmanager.  To email another app's alerts, add a route for its namespace.
 
-Known noise, not emailed: `KubeControllerManagerDown`, `KubeSchedulerDown` and `KubeProxyDown` always fire on k3s, which runs those components inside its own process where Prometheus can't scrape them.
+The chart's monitors for the scheduler, controller-manager, kube-proxy and etcd are disabled (`enabled: false` in the values).  k3s runs the first three inside its own process, where Prometheus can't scrape them, and a single-node k3s uses SQLite instead of etcd, so those monitors never had data and their `*Down` alerts fired permanently.
