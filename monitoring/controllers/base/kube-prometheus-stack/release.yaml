@@ -30,6 +30,18 @@ spec:
         target:
           kind: PrometheusRule
   values:
+    # k3s runs the scheduler, controller-manager and kube-proxy inside the
+    # single k3s server process (no pods to scrape), and a single-node k3s uses
+    # SQLite rather than etcd. The chart's monitors for them never get data and
+    # their *Down alerts fire forever, so turn them off.
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeEtcd:
+      enabled: false
     alertmanager:
       alertmanagerSpec:
         # Mounted at /etc/alertmanager/secrets/alertmanager-smtp/ (sops-encrypted
