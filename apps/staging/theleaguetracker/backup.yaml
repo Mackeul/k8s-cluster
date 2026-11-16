@@ -45,7 +45,7 @@ spec:
                   mountPath: /work
           containers:
             - name: upload
-              image: rclone/rclone:1.75.2
+              image: rclone/rclone:1.76.0
               command:
                 - sh
                 - -euc
