@@ -6,3 +6,10 @@ resources:
   - cloudflare.yaml
   - cloudflare-tunnel.yaml
   - theleaguetracker-secrets.yaml
+  - backup.yaml
+  - backup-r2-secret.yaml
+
+# One place to bump the app version: applies to the deployment and the backup job.
+images:
+  - name: ghcr.io/mackeul/theleaguetracker
+    newTag: v0.1.0-beta.1

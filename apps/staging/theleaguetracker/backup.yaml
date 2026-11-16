@@ -1,0 +1,78 @@
+# Nightly backup of the database and logos to Cloudflare R2.
+#
+# 1. "snapshot" (the app image, which has PHP + SQLite) takes a consistent copy
+#    of the live database with VACUUM INTO, and tars it with the logos.
+# 2. "upload" (rclone) copies the tarball to the bucket and deletes backups
+#    older than 30 days.
+#
+# Restore: download a tarball from the bucket, then
+#   kubectl -n theleaguetracker scale deploy/theleaguetracker --replicas=0
+#   ...copy database.sqlite and public/ back into the volume...
+#   kubectl -n theleaguetracker scale deploy/theleaguetracker --replicas=1
+# Run one now: kubectl -n theleaguetracker create job --from=cronjob/theleaguetracker-backup backup-manual
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: theleaguetracker-backup
+spec:
+  schedule: "30 3 * * *"
+  timeZone: America/Toronto
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          initContainers:
+            - name: snapshot
+              image: ghcr.io/mackeul/theleaguetracker:v0.1.0-beta.1
+              command:
+                - sh
+                - -euc
+                - |
+                  php -r '(new PDO("sqlite:/data/database.sqlite"))->exec("VACUUM INTO \"/work/database.sqlite\"");'
+                  tar czf "/work/theleaguetracker-$(date +%Y%m%d-%H%M%S).tgz" \
+                    -C /work database.sqlite -C /data public
+                  rm /work/database.sqlite
+                  ls -l /work
+              volumeMounts:
+                - name: data
+                  mountPath: /data
+                - name: work
+                  mountPath: /work
+          containers:
+            - name: upload
+              image: rclone/rclone:1.75.2
+              command:
+                - sh
+                - -euc
+                - |
+                  rclone copy /work "r2:${BUCKET}/" -v
+                  rclone delete "r2:${BUCKET}/" --min-age 30d -v
+              env:
+                - name: BUCKET
+                  value: theleaguetracker-backups
+                - name: RCLONE_CONFIG_R2_TYPE
+                  value: s3
+                - name: RCLONE_CONFIG_R2_PROVIDER
+                  value: Cloudflare
+                - name: RCLONE_CONFIG_R2_ENDPOINT
+                  value: https://798cf4cf33203989af9bf913eb94f919.r2.cloudflarestorage.com
+                # The API token is scoped to the one bucket, so don't try to create it.
+                - name: RCLONE_CONFIG_R2_NO_CHECK_BUCKET
+                  value: "true"
+              envFrom:
+                - secretRef:
+                    name: theleaguetracker-backup-r2
+              volumeMounts:
+                - name: work
+                  mountPath: /work
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: theleaguetracker-data
+            - name: work
+              emptyDir: {}
