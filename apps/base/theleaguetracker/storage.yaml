@@ -1,0 +1,12 @@
+# Holds the SQLite database plus uploaded and seeded logos.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: theleaguetracker-data
+  namespace: theleaguetracker
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
