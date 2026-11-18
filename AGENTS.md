@@ -54,3 +54,8 @@ kubectl -n <ns> rollout restart deploy/<name>        # pods don't reload env-var
 
 - The League Tracker app code is in `Mackeul/theleaguetracker`; its default branch is `master`, not `main`.
 - Reading the Grafana admin password is blocked by the permission classifier. To verify a dashboard loaded: `kubectl -n monitoring logs deploy/kube-prometheus-stack-grafana -c grafana-sc-dashboard`.
+- The Prometheus image has no `wget`/`curl`, so `kubectl exec` queries fail. Port-forward instead:
+  ```bash
+  kubectl -n monitoring port-forward svc/kube-prometheus-stack-prometheus 19090:9090 &
+  curl -s -G localhost:19090/api/v1/query --data-urlencode 'query=ALERTS{alertstate="firing"}'
+  ```
