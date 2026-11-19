@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: "93.4.0"
+      version: "93.4.1"
 
       # If want to auto-apply minor revision updates.
       # version: "82.*"
