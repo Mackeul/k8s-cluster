@@ -13,7 +13,7 @@ resources:
 # One place to bump the app version: applies to the deployment and the backup job.
 images:
   - name: ghcr.io/mackeul/theleaguetracker
-    newTag: v0.1.0-beta.1
+    newTag: v0.1.0-beta.2
 
 # Grafana dashboard, picked up by the Grafana sidecar via the grafana_dashboard label.
 configMapGenerator:
