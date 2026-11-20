@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["kubernetes","flux"],
+  "enabledManagers": ["kubernetes", "flux", "kustomize"],
   "kubernetes": {
     "managerFilePatterns": [
       "/\\.yaml$/"
@@ -10,5 +10,14 @@
     "managerFilePatterns": [
       "/\\.yaml$/"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "description": "theleaguetracker tags are vX.Y.Z-beta.N. Docker versioning treats '-beta.N' as a variant suffix and never offers a different one, so compare them as semver and allow pre-releases.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/mackeul/theleaguetracker"],
+      "versioning": "semver",
+      "ignoreUnstable": false
+    }
+  ]
 }

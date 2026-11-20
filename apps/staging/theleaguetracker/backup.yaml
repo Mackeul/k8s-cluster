@@ -28,7 +28,7 @@ spec:
           restartPolicy: Never
           initContainers:
             - name: snapshot
-              image: ghcr.io/mackeul/theleaguetracker:v0.1.0-beta.1
+              image: ghcr.io/mackeul/theleaguetracker:v0.1.0-beta.2
               command:
                 - sh
                 - -euc
